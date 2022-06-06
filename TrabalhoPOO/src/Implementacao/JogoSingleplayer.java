@@ -1,6 +1,20 @@
 package Implementacao;
 
-public class JogoSingleplayer extends Jogo{
+/*
+ *  Trabalho de POO (Programação Orientada a Objetos)
+ *  Entregas:
+ *  1°: __/__/____
+ *  2°: 02/06/2022
+ *  3°: __/__/____
+ *  
+ *  Integrantes: João Marcos, Kelvyn, Leonardo Monteiro, Victor Adriel, Vinicius
+ *  
+ *  Classe: JogoSingleplayer.java
+ *  Sobre: Implementação da classe JogoSingleplayer, que exibe informações sobre jogos com apenas um jogador.
+ *  	   Extende a classe abstrata Jogo e implementa a interface Imprimivel.
+ */
+
+public class JogoSingleplayer extends Jogo {
 	
 	public JogoSingleplayer(String titulo, String dataLancamento, double preco, String genero, int qtdeEstoque) {
 		super(titulo, dataLancamento, preco, genero, qtdeEstoque);	
