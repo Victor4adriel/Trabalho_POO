@@ -1,5 +1,18 @@
 package Implementacao;
 
+/*
+ *  Trabalho de POO (Programação Orientada a Objetos)
+ *  Entregas:
+ *  1°: __/__/____
+ *  2°: 02/06/2022
+ *  3°: __/__/____
+ *  
+ *  Integrantes: João Marcos, Kelvyn, Leonardo Monteiro, Victor Adriel, Vinicius
+ *  
+ *  Classe: Pedido.java
+ *  Sobre: Implementação da classe Pedido, que contém informações sobre os itens do cliente.
+ */
+
 import java.util.ArrayList;
 import java.util.List;
 

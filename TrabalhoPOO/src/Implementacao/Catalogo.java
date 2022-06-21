@@ -1,5 +1,18 @@
 package Implementacao;
 
+/*
+ *  Trabalho de POO (Programação Orientada a Objetos)
+ *  Entregas:
+ *  1°: __/__/____
+ *  2°: 02/06/2022
+ *  3°: __/__/____
+ *  
+ *  Integrantes: João Marcos, Kelvyn, Leonardo Monteiro, Victor Adriel, Vinicius
+ *  
+ *  Classe: Catalogo.java
+ *  Sobre: Implementação da classe Catalogo, que pega os jogos e imprime para o usuário.
+ */
+
 import java.util.ArrayList;
 import java.util.List;
 

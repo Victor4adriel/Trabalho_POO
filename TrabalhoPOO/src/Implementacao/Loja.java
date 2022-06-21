@@ -1,5 +1,18 @@
 package Implementacao;
 
+/*
+ *  Trabalho de POO (Programação Orientada a Objetos)
+ *  Entregas:
+ *  1°: __/__/____
+ *  2°: 02/06/2022
+ *  3°: __/__/____
+ *  
+ *  Integrantes: João Marcos, Kelvyn, Leonardo Monteiro, Victor Adriel, Vinicius
+ *  
+ *  Classe: Loja.java
+ *  Sobre: Implementação da classe Loja, a principal classe para exibição e gerenciamento das principais funções da Loja.
+ */
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -125,7 +138,7 @@ public class Loja {
 		System.out.println("+-----------------------------------+");
 		
 		try {
-			FileWriter escreve = new FileWriter("dados.txt");
+			FileWriter escreve = new FileWriter("listaCliente.txt");
 			escreve.write("-----------------------------------------------");
 			escreve.write("\n            LISTA DE CLIENTES           ");
 			escreve.write("\n-----------------------------------------------");
@@ -143,7 +156,6 @@ public class Loja {
 		}
 	}
 	
-	// ok
 	public void gerarRelCliente(int index) {
 		System.out.println("+-----------------------------------+");
 		System.out.println("|              RELATÓRIO            |");
@@ -151,7 +163,6 @@ public class Loja {
 		this.clientes.get(index).visualizarCliente();
 	}
 
-	// ok
 	public void gerarRelDataLancamento(String ano) {
 
 		boolean entrou = false;

@@ -1,5 +1,18 @@
 package Implementacao;
 
+/*
+ *  Trabalho de POO (Programação Orientada a Objetos)
+ *  Entregas:
+ *  1°: __/__/____
+ *  2°: 02/06/2022
+ *  3°: __/__/____
+ *  
+ *  Integrantes: João Marcos, Kelvyn, Leonardo Monteiro, Victor Adriel, Vinicius
+ *  
+ *  Classe: Jogo.java
+ *  Sobre: Implementação da classe abstrata Jogo, para gerar informações dos jogos em geral.
+ */
+
 public abstract class Jogo {
 	private static int contador = 0;
 	private int idJogo;

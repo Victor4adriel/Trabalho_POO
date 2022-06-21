@@ -1,5 +1,18 @@
 package Implementacao;
 
+/*
+ *  Trabalho de POO (Programação Orientada a Objetos)
+ *  Entregas:
+ *  1°: __/__/____
+ *  2°: 02/06/2022
+ *  3°: __/__/____
+ *  
+ *  Integrantes: João Marcos, Kelvyn, Leonardo Monteiro, Victor Adriel, Vinicius
+ *  
+ *  Classe: Cliente.java
+ *  Sobre: Implementação da classe Cliente, usada para pegar e gerar dados sobre possiveis clientes que irão usufruir do sistema.
+ */
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +24,10 @@ public class Cliente {
 	private Login login;
 	private List<Pedido> pedidos = new ArrayList<>();
 	private List<Jogo> jogosAdquiridos = new ArrayList<>();
+	
+	public Cliente() {
+		this("N/A", "N/A", "N/A", "N/A");
+	}
 
 	public Cliente(String nome, String cpf, String usuario, String senha) {
 		contador++;
@@ -63,7 +80,6 @@ public class Cliente {
 	}
 	
 	public void finalizarPedido(Pedido pedido) {
-		System.out.println("Pedido realizado!");
 		for (Item item : pedido.getItens()) {
 			Jogo jg = item.getJogo();
 			setJogosAdquiridos(jg);
@@ -71,6 +87,19 @@ public class Cliente {
 		}
 		this.pedidos.add(pedido);
 		pedido.setStatus("PAGO");
+	}
+	
+	public void visualizarPedidos() {
+		if(pedidos.size() == 0) {
+			System.out.println("+-----------------------------------+");
+			System.out.println("|           Nenhum Pedido           |");
+			System.out.println("+-----------------------------------+");
+		} else {
+			for(Pedido pd: pedidos) {
+				pd.visualizarPedido();
+				System.out.println("\n");
+			}
+		}
 	}
 	
 	public void visualizarCliente() {

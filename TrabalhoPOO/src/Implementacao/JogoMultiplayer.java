@@ -1,6 +1,20 @@
 package Implementacao;
 
-public class JogoMultiplayer extends Jogo{
+/*
+ *  Trabalho de POO (Programação Orientada a Objetos)
+ *  Entregas:
+ *  1°: __/__/____
+ *  2°: 02/06/2022
+ *  3°: __/__/____
+ *  
+ *  Integrantes: João Marcos, Kelvyn, Leonardo Monteiro, Victor Adriel, Vinicius
+ *  
+ *  Classe: JogoMultiplayer.java
+ *  Sobre: Implementação da classe JogoMultiplayer, que exibe informações sobre jogos com mais de um jogador.
+ *  	   Extende a classe abstrata Jogo e implementa a interface Imprimivel.
+ */
+
+public class JogoMultiplayer extends Jogo {
 	
 	private Integer numMaxDeJogadores;
 
@@ -17,8 +31,14 @@ public class JogoMultiplayer extends Jogo{
 	public void visualizarJogo() {
 
 		System.out.println("+-----------------------------------+");
+		System.out.print("|ID: " + super.getIdJogo());
+		Organiza.espaco(Integer.toString(super.getIdJogo()).length() - 2);
+		
+		System.out.println("+-----------------------------------+");
+		
 		System.out.print("|Nome: " + super.getTitulo());
 		Organiza.espaco(super.getTitulo().length());
+		System.out.println("+-----------------------------------+");
 		
 		System.out.print("|Gênero: " + super.getGenero());
 		Organiza.espaco(super.getGenero().length() + 2);

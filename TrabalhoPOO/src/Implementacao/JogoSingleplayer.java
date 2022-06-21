@@ -24,8 +24,15 @@ public class JogoSingleplayer extends Jogo {
 	public void visualizarJogo() {
 
 		System.out.println("+-----------------------------------+");
+		System.out.print("|ID: " + super.getIdJogo());
+		Organiza.espaco(Integer.toString(super.getIdJogo()).length() - 2);
+		
+		
+		System.out.println("+-----------------------------------+");
+		
 		System.out.print("|Nome: " + super.getTitulo());
 		Organiza.espaco(super.getTitulo().length());
+		System.out.println("+-----------------------------------+");
 		
 		System.out.print("|Gênero: " + super.getGenero());
 		Organiza.espaco(super.getGenero().length() + 2);
