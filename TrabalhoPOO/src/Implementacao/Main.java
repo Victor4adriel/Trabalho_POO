@@ -466,23 +466,15 @@ public class Main {
 							limpaBuffer(entrada);
 
 							entrada.nextLine();
-
 							break;
 						case 3:
 							menuRelatorio();
 							System.out.print("Selecione uma opção: ");
 							opcao = entrada.nextInt();
-
 							limpaBuffer(entrada);
-
 							switch (opcao) {
 							case 1:
 								lj.gerarListaCliente();
-
-								System.out.println("\nPressione 'Enter' para retornar ao menu.");
-
-								entrada.nextLine();
-
 								break;
 							case 2:
 								System.out.println("+-----------------------------------+");
@@ -490,12 +482,7 @@ public class Main {
 								String ano = entrada.next();
 								System.out.println("+-----------------------------------+");
 								lj.gerarRelDataLancamento(ano);
-
-								System.out.println("\nPressione 'Enter' para retornar ao menu.");
-
 								limpaBuffer(entrada);
-
-								entrada.nextLine();
 								break;
 							case 3:
 								System.out.println("+-----------------------------------+");
@@ -503,12 +490,7 @@ public class Main {
 								double preco = entrada.nextDouble();
 								System.out.println("+-----------------------------------+");
 								lj.gerarRelPrecoAbaixo(preco);
-
-								System.out.println("\nPressione 'Enter' para retornar ao menu.");
-
 								limpaBuffer(entrada);
-
-								entrada.nextLine();
 								break;
 							case 4:
 								System.out.println("+-----------------------------------+");
@@ -517,23 +499,13 @@ public class Main {
 								System.out.println("+-----------------------------------+");
 								lj.gerarRelGeneroJogo(genero);
 
-								System.out.println("\nPressione 'Enter' para retornar ao menu.");
-
 								limpaBuffer(entrada);
-
-								entrada.nextLine();
 								break;
 							case 5:
 								lj.gerarRelJogosAVenda();
-
-								System.out.println("\nPressione 'Enter' para retornar ao menu.");
-
-								entrada.nextLine();
 								break;
 							}
-
 							System.out.println("\nPressione 'Enter' para retornar ao menu.");
-
 							entrada.nextLine();
 							break;
 						case 4:
