@@ -16,7 +16,7 @@ package Implementacao;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Cliente {
+public class Cliente implements Nomeavel {
 	private static int contador = 0;
 	private Integer idCliente;
 	private String nome;
@@ -40,9 +40,15 @@ public class Cliente {
 	public Integer getIdCliente() {
 		return idCliente;
 	}
-
+	
+	@Override
 	public String getNome() {
 		return nome;
+	}
+	
+	@Override
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public String getCpf() {

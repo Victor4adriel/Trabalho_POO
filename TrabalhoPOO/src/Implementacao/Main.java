@@ -21,10 +21,10 @@ import java.util.Scanner;
 
 public class Main {
 
-	public static void Comprar(Loja lj, Cliente c, Scanner entrada) {
+	public static void comprar(Loja lj, Cliente c, Scanner entrada) {
 		int id;
 		boolean repete = true;
-		char resp;
+		char resposta;
 		Pedido p = new Pedido();
 		do {
 			System.out.println("Informe o ID do jogo a ser comprado: ");
@@ -38,10 +38,10 @@ public class Main {
 			}
 
 			System.out.print("Continuar comprando? (S/N): ");
-			resp = entrada.next().charAt(0);
+			resposta = entrada.next().charAt(0);
 			System.out.println("+-----------------------------------+");
 
-			switch (resp) {
+			switch (resposta) {
 			case 'n':
 			case 'N':
 				repete = false;
@@ -57,10 +57,10 @@ public class Main {
 		} while (repete);
 
 		System.out.print("Finalizar Pedido? (S/N): ");
-		resp = entrada.next().charAt(0);
+		resposta = entrada.next().charAt(0);
 		System.out.println("+-----------------------------------+");
-		
-		switch (resp) {
+
+		switch (resposta) {
 		case 'n':
 		case 'N':
 			break;
@@ -93,10 +93,10 @@ public class Main {
 	public static void adicionarJogo(Loja lj, Scanner entrada) {
 
 		String nome, ano, genero;
-		char resp;
+		char resposta;
 		double preco;
 		int quantidade, numMax;
-		
+
 		System.out.println("+-----------------------------------+");
 		System.out.print("Digite o nome do jogo: ");
 		nome = entrada.nextLine();
@@ -115,10 +115,10 @@ public class Main {
 		System.out.println("+-----------------------------------+");
 
 		System.out.print("É multiplayer? (S/N): ");
-		resp = entrada.next().charAt(0);
+		resposta = entrada.next().charAt(0);
 		System.out.println("+-----------------------------------+");
-		
-		switch (resp) {
+
+		switch (resposta) {
 		case 'S':
 		case 's':
 			System.out.println("Informe o número máximo de jogadores: ");
@@ -154,32 +154,10 @@ public class Main {
 
 	}
 
-	// resolver questao da exlução do arquivo
-//	public static void removerJogo(Loja lj, Scanner entrada) {
-//		int id;
-//		System.out.println("informe o ID do jogo: ");
-//		id = entrada.nextInt();
-//		
-//		for(Jogo jg: lj.getCatalogo().getJogos()) {
-//			if(jg.getIdJogo() != id) {
-//				try {
-////					FileWriter limpar = new FileWriter("C:\\Users\\Casa\\Desktop\\Dados_TP\\jogos.txt");
-//					FileWriter arq = new FileWriter("C:\\Users\\Casa\\Desktop\\Dados_TP\\jogos.txt", true);
-//					
-//					arq.write("\n" + jg.getTitulo() + ";" + jg.getDataLancamento() + ";" + jg.getPreco() + ";" + jg.getGenero() + ";" + jg.getQtdeEstoque());
-////					limpar.close();
-//					arq.close();
-//				} catch (IOException e) {
-//					e.printStackTrace();
-//				}
-//			} else {
-//				lj.removerJogo(jg);
-//			}
-//		}
-//	}
-
 	public static void cadastrarCliente(Loja lj, Scanner entrada) {
 		String nome, cpf, user, password;
+		System.out.println("+-----------------------------------+");
+		System.out.println("|             CADASTRO              |");
 		System.out.println("+-----------------------------------+");
 		System.out.print("Digite um nome: ");
 		nome = entrada.nextLine();
@@ -204,6 +182,8 @@ public class Main {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+
+		lj.cadastrarCliente(nome, cpf, user, password);
 
 		System.out.println("Cadastro Realizado!");
 		System.out.println("+-----------------------------------+\n");
@@ -235,6 +215,7 @@ public class Main {
 			String jogo[] = new String[4];
 
 			while (linha != null) {
+
 				jogo = linha.split(";");
 				if (jogo.length > 5) {
 					lj.adicionarJogo(jogo[0], jogo[1], Double.parseDouble(jogo[2]), jogo[3], Integer.parseInt(jogo[4]),
@@ -274,10 +255,30 @@ public class Main {
 				}
 			}
 			arq.close();
-
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}
+	}
+
+	public static void avaliarJogo(Loja lj, Scanner entrada, Cliente cliente) {
+		int id;
+		double nota;
+		
+		cliente.visualizarJogosAdquiridos();
+		
+		if(cliente.getJogosAdquiridos().size() > 0) {
+			System.out.print("Informe o ID do jogo a ser avaliado: ");
+			id = entrada.nextInt();
+		
+			for(Jogo jg: cliente.getJogosAdquiridos()) {
+				if(jg.getIdJogo() == id) {
+					System.out.print("Informe uma nota (0 - 10): ");
+					nota = entrada.nextDouble();
+					
+					cliente.avaliarJogo(jg, nota);	
+				}
+			}	
+		} 
 	}
 
 	public static void menuUser() {
@@ -287,7 +288,8 @@ public class Main {
 		System.out.println("|1 - Comprar jogos                  |");
 		System.out.println("|2 - Meus pedidos                   |");
 		System.out.println("|3 - Ver perfil                     |");
-		System.out.println("|4 - Sair da Conta                  |");
+		System.out.println("|4 - Avaliar jogo                   |");
+		System.out.println("|5 - Sair da Conta                  |");
 		System.out.println("+-----------------------------------+");
 	}
 
@@ -295,11 +297,10 @@ public class Main {
 		System.out.println("+-----------------------------------+");
 		System.out.println("|               MENU                |");
 		System.out.println("+-----------------------------------+");
-		System.out.println("|1 - Cadastrar Cliente              |");
-		System.out.println("|2 - Visualizar catalogo            |");
-		System.out.println("|3 - Adicionar jogo                 |");
-		System.out.println("|4 - Relatórios                     |");
-		System.out.println("|5 - Sair da Conta                  |");
+		System.out.println("|1 - Visualizar catalogo            |");
+		System.out.println("|2 - Adicionar jogo                 |");
+		System.out.println("|3 - Relatórios                     |");
+		System.out.println("|4 - Sair da Conta                  |");
 		System.out.println("+-----------------------------------+");
 	}
 
@@ -403,8 +404,8 @@ public class Main {
 						case 1:
 							lj.getCatalogo().visualizarCatalogo();
 
-							Comprar(lj, c, entrada);
-							
+							comprar(lj, c, entrada);
+
 							limpaBuffer(entrada);
 
 							System.out.println("Pressione 'Enter' para retornar ao menu.");
@@ -415,9 +416,9 @@ public class Main {
 
 						case 2:
 							c.visualizarPedidos();
-							
+
 							System.out.println("Pressione 'Enter' para retornar ao menu.");
-							
+
 							entrada.nextLine();
 							break;
 						case 3:
@@ -427,14 +428,20 @@ public class Main {
 
 							entrada.nextLine();
 							break;
-						case 4:							
+						case 4:
+							avaliarJogo(lj, entrada, c);
+							
+							System.out.println("\nPressione 'Enter' para retornar ao menu.");
 
+							entrada.nextLine();
+							break;
+						case 5:
 							repete = false;
 							break;
 						}
 
 					} while (repete);
-		
+
 					break;
 				case 2:
 					do {
@@ -446,19 +453,12 @@ public class Main {
 
 						switch (opcao) {
 						case 1:
-							cadastrarCliente(lj, entrada);
-							System.out.println("Pressione 'Enter' para retornar ao menu.");							
-
-							entrada.nextLine();
-							break;
-						case 2:
 							lj.getCatalogo().visualizarCatalogo();
 							System.out.println("\nPressione 'Enter' para retornar ao menu.");
 
 							entrada.nextLine();
-
 							break;
-						case 3:
+						case 2:
 							adicionarJogo(lj, entrada);
 							System.out.println("\nPressione 'Enter' para retornar ao menu.");
 
@@ -466,8 +466,9 @@ public class Main {
 							limpaBuffer(entrada);
 
 							entrada.nextLine();
+
 							break;
-						case 4:
+						case 3:
 							menuRelatorio();
 							System.out.print("Selecione uma opção: ");
 							opcao = entrada.nextInt();
@@ -477,11 +478,11 @@ public class Main {
 							switch (opcao) {
 							case 1:
 								lj.gerarListaCliente();
-								
-								System.out.println("\nPressione 'Enter' para retornar ao menu.");				
+
+								System.out.println("\nPressione 'Enter' para retornar ao menu.");
 
 								entrada.nextLine();
-								
+
 								break;
 							case 2:
 								System.out.println("+-----------------------------------+");
@@ -491,9 +492,9 @@ public class Main {
 								lj.gerarRelDataLancamento(ano);
 
 								System.out.println("\nPressione 'Enter' para retornar ao menu.");
-								
+
 								limpaBuffer(entrada);
-								
+
 								entrada.nextLine();
 								break;
 							case 3:
@@ -504,9 +505,9 @@ public class Main {
 								lj.gerarRelPrecoAbaixo(preco);
 
 								System.out.println("\nPressione 'Enter' para retornar ao menu.");
-								
+
 								limpaBuffer(entrada);
-								
+
 								entrada.nextLine();
 								break;
 							case 4:
@@ -515,32 +516,34 @@ public class Main {
 								String genero = entrada.next();
 								System.out.println("+-----------------------------------+");
 								lj.gerarRelGeneroJogo(genero);
-								
+
 								System.out.println("\nPressione 'Enter' para retornar ao menu.");
-								
+
 								limpaBuffer(entrada);
-								
+
 								entrada.nextLine();
 								break;
 							case 5:
 								lj.gerarRelJogosAVenda();
-								
+
 								System.out.println("\nPressione 'Enter' para retornar ao menu.");
-								
+
 								entrada.nextLine();
 								break;
 							}
+
+							System.out.println("\nPressione 'Enter' para retornar ao menu.");
+
+							entrada.nextLine();
 							break;
-						case 5:
+						case 4:
 							repete = false;
 							break;
 						default:
 							System.out.println("+-----------------------------------+");
 							System.out.println("Opção inválida!");
 							System.out.println("+-----------------------------------+");
-
 						}
-
 					} while (repete);
 
 				}
@@ -548,11 +551,11 @@ public class Main {
 				break;
 			case 'N':
 			case 'n':
+
+				entrada.nextLine();
 				cadastrarCliente(lj, entrada);
 				break;
 			}
 		}
-
 	}
-
 }
